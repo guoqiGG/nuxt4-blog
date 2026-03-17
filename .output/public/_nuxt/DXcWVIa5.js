@@ -1,0 +1,1 @@
+import{g as s,o,c as t,b as e,I as n,a as r,H as c,J as d}from"./CBVOrBI9.js";const _={class:"min-h-screen bg-gray-50"},i={class:"container mx-auto px-4 py-8"},u=s({__name:"no-sidebar",setup(l){return(a,m)=>(o(),t("div",_,[e(n),r("main",i,[c(a.$slots,"default")]),e(d)]))}});export{u as default};
