@@ -1,17 +1,17 @@
 <template>
   <div class="space-y-12">
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
-      <h1 class="text-5xl font-bold text-slate-900">所有文章</h1>
+      <h1 class="text-5xl font-bold text-slate-900 dark:text-white">所有文章</h1>
       <div class="flex flex-col sm:flex-row gap-4">
         <input 
           type="text" 
           v-model="searchQuery"
           placeholder="搜索文章..."
-          class="input-field flex-1 sm:w-80"
+          class="input-field flex-1 sm:w-80 dark:bg-slate-800 dark:border-slate-700 dark:text-white dark:placeholder-slate-500"
         />
         <select 
           v-model="selectedCategory"
-          class="input-field"
+          class="input-field dark:bg-slate-800 dark:border-slate-700 dark:text-white"
         >
           <option value="">全部分类</option>
           <option v-for="category in categories" :key="category" :value="category">
@@ -22,20 +22,20 @@
     </div>
 
     <div v-if="isLoading" class="text-center py-24">
-      <div class="inline-block animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600"></div>
-      <p class="mt-8 text-slate-600 text-xl font-medium">加载中...</p>
+      <div class="inline-block animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 dark:border-blue-500"></div>
+      <p class="mt-8 text-slate-600 text-xl font-medium dark:text-slate-400">加载中...</p>
     </div>
 
     <div v-else-if="filteredPosts.length === 0" class="text-center py-24">
       <div class="text-8xl mb-6">🔍</div>
-      <p class="text-slate-600 text-xl font-medium">暂无文章</p>
+      <p class="text-slate-600 text-xl font-medium dark:text-slate-400">暂无文章</p>
     </div>
 
     <div v-else class="space-y-6">
       <article 
         v-for="post in paginatedPosts" 
         :key="post.id"
-        class="card cursor-pointer animate-scale-in"
+        class="card cursor-pointer animate-scale-in dark:bg-slate-800/50 dark:border-slate-700"
         @click="navigateToPost(post.id)"
       >
         <div class="p-8 md:p-10">
@@ -43,35 +43,35 @@
             <span class="badge">
               {{ post.category }}
             </span>
-            <span class="text-slate-500 text-sm flex items-center gap-2">
+            <span class="text-slate-500 text-sm flex items-center gap-2 dark:text-slate-400">
               <span>📅</span>
               {{ formatDate(post.createdAt) }}
             </span>
-            <span class="text-slate-500 text-sm flex items-center gap-2">
+            <span class="text-slate-500 text-sm flex items-center gap-2 dark:text-slate-400">
               <span>👁️</span>
               {{ post.views }} 阅读
             </span>
           </div>
 
-          <h2 class="text-3xl font-bold text-slate-900 mb-5 hover:text-blue-600 transition-colors">
+          <h2 class="text-3xl font-bold text-slate-900 mb-5 hover:text-blue-600 transition-colors dark:text-white dark:hover:text-blue-400">
             {{ post.title }}
           </h2>
 
-          <p class="text-slate-600 mb-8 line-clamp-3 leading-relaxed">
+          <p class="text-slate-600 mb-8 line-clamp-3 leading-relaxed dark:text-slate-400">
             {{ post.excerpt }}
           </p>
 
-          <div class="flex items-center justify-between pt-8 border-t border-slate-200">
+          <div class="flex items-center justify-between pt-8 border-t border-slate-200 dark:border-slate-700">
             <div class="flex flex-wrap gap-3">
               <span 
                 v-for="tag in post.tags.slice(0, 3)" 
                 :key="tag"
-                class="px-4 py-2 bg-gradient-to-r from-slate-100 to-slate-50 text-slate-700 rounded-lg text-sm hover:from-blue-100 hover:to-purple-100 hover:text-blue-600 transition-all cursor-default border border-slate-200"
+                class="px-4 py-2 bg-gradient-to-r from-slate-100 to-slate-50 text-slate-700 rounded-lg text-sm hover:from-blue-100 hover:to-purple-100 hover:text-blue-600 transition-all cursor-default border border-slate-200 dark:from-slate-700 dark:to-slate-800 dark:text-slate-300 dark:hover:from-blue-700 dark:hover:to-purple-700 dark:hover:text-blue-300"
               >
                 #{{ tag }}
               </span>
             </div>
-            <span class="text-blue-600 font-bold hover:text-purple-600 hover:underline flex items-center gap-2">
+            <span class="text-blue-600 font-bold hover:text-purple-600 hover:underline flex items-center gap-2 dark:text-blue-400 dark:hover:text-purple-400">
               阅读更多 <span class="text-xl">→</span>
             </span>
           </div>
@@ -85,7 +85,7 @@
           v-for="page in totalPages" 
           :key="page"
           @click="currentPage = page"
-          class="w-14 h-14 flex items-center justify-center rounded-xl transition-all font-bold text-lg shadow-lg"
+          class="w-14 h-14 flex items-center justify-center rounded-xl transition-all font-bold text-lg shadow-lg dark:shadow-none"
           :class="{
             'bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white shadow-purple-500/40': currentPage === page,
             'bg-white text-slate-600 hover:bg-slate-50 hover:text-blue-600 hover:shadow-md': currentPage !== page

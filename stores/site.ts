@@ -14,6 +14,7 @@ export const useSiteStore = defineStore('site', {
       ],
     },
     isLoading: false,
+    isDark: false,
   }),
 
   getters: {
@@ -31,6 +32,27 @@ export const useSiteStore = defineStore('site', {
         console.error('Failed to fetch site info:', error)
       } finally {
         this.isLoading = false
+      }
+    },
+    
+    toggleTheme() {
+      this.isDark = !this.isDark
+      document.documentElement.classList.toggle('dark')
+      localStorage.setItem('theme', this.isDark ? 'dark' : 'light')
+    },
+    
+    setTheme(theme: 'light' | 'dark') {
+      this.isDark = theme === 'dark'
+      document.documentElement.classList.toggle('dark')
+      localStorage.setItem('theme', theme)
+    },
+    
+    initTheme() {
+      const savedTheme = localStorage.getItem('theme')
+      if (savedTheme) {
+        this.setTheme(savedTheme as 'light' | 'dark')
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        this.setTheme('dark')
       }
     },
   },
