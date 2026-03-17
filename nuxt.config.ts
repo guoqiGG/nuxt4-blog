@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   app: {
-    baseURL: '/nuxt-blog/', // 例如 '/my-nuxt-app/'
+    baseURL: '/nuxt4-blog/', // 例如 '/my-nuxt-app/'
     head: {
       title: '个人博客',
       meta: [
