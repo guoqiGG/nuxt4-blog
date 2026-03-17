@@ -1,15 +1,11 @@
 export default defineNuxtConfig({
   compatibilityDate: '2026-03-17',
   modules: ['@pinia/nuxt', '@nuxtjs/tailwindcss'],
-
   pinia: {
-    storesDirs: ['./stores/**'], 
+    storesDirs: ['./stores/**'],
   },
-
   devtools: { enabled: true },
-
   css: ['~/assets/css/main.css'],
-
   app: {
     baseURL: '/nuxt4-blog/', // 例如 '/my-nuxt-app/'
     head: {
@@ -29,8 +25,8 @@ export default defineNuxtConfig({
     injectPosition: 0,
     viewer: true,
   },
-
   nitro: {
-    preset: 'github-pages', 
-  }
+    preset: 'github-pages',
+  },
+  ssr: false,
 })
